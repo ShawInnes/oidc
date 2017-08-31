@@ -41,25 +41,14 @@ namespace oidc_api
 
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddCookie()
             .AddJwtBearer(options => {
                 options.Audience = Configuration["ClientId"];
                 options.Authority = Configuration["Authority"];
                 options.RequireHttpsMetadata = false;
-            })
-            .AddOpenIdConnect(options => {
-                options.Authority = Configuration["Authority"];
-                options.ClientId = Configuration["ClientId"];
-                options.ClientSecret = Configuration["ClientSecret"];
-                options.GetClaimsFromUserInfoEndpoint = true;
-                options.RequireHttpsMetadata = false;
-                options.ResponseType = "code id_token";
-                options.SaveTokens = true;
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

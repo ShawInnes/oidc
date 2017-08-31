@@ -1,6 +1,16 @@
-# Zero to OIDC in 60 seconds
+# Zero to OIDC+API in 60 seconds
 
-## Get IAM Running
+## Purpose
+This is a proof of concept for a suitable architecture for a secured API.
+
+## Features
+
+- open id connect Authentication through KeyCloak
+- secured API in asp.net core 2 using JwtBearer Token
+- angular2 SPA can authenticate against KeyCloak and call secured API endpoints
+
+
+## Get KeyCloak Running
 ```
 docker-compose up
 docker cp scripts/init.sh oidc_keycloak_1:/opt/jboss/init.sh

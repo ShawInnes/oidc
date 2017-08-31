@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     callAPI() {
       this.apiService.callApi()
                       .subscribe(
-                          values => console.log('result', values),
+                          values => this.message = this.message + ' ' + values,
                            err => {
                                // Log errors if any
                                console.log('error', err);
