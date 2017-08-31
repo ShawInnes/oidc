@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mysql:
+    image: mysql
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=keycloak
+      - MYSQL_USER=keycloak
+      - MYSQL_PASSWORD=keycloak
+      - MYSQL_ROOT_PASSWORD=root_password
+  keycloak:
+    image: jboss/keycloak-mysql
+    ports:
+     - "8080:8080"
+    links:
+     - mysql
+    environment:
+      - MYSQL_DATABASE=keycloak
+      - MYSQL_USER=keycloak
+      - MYSQL_PASSWORD=keycloak
+      - MYSQL_PORT_3306_TCP_ADDR=mysql
+      - MYSQL_PORT_3306_TCP_PORT=3306
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
