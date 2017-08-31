@@ -19,11 +19,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     isAuthorized: boolean;
 
     constructor(public oidcSecurityService: OidcSecurityService, private apiService: ApiService) {
-        this.message = 'HomeComponent constructor';
     }
 
     callAPI() {
-      this.apiService.callApi();
+      this.apiService.callApi()
+                      .subscribe(
+                          values => console.log('result', values),
+                           err => {
+                               // Log errors if any
+                               console.log('error', err);
+                           });
+
     }
 
     ngOnInit() {
@@ -38,8 +44,6 @@ export class HomeComponent implements OnInit, OnDestroy {
                     this.name = userData.preferred_username;
                     this.email = userData.email;
                 }
-
-                console.log('userData getting data');
             });
     }
 

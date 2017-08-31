@@ -39,6 +39,7 @@ export class AppModule {
     openIDImplicitFlowConfiguration.startup_route = '/';
     openIDImplicitFlowConfiguration.forbidden_route = '/Forbidden';
     openIDImplicitFlowConfiguration.unauthorized_route = '/Unauthorized';
+    openIDImplicitFlowConfiguration.post_logout_redirect_uri = 'http://localhost:4200';
     openIDImplicitFlowConfiguration.auto_userinfo = true;
     openIDImplicitFlowConfiguration.log_console_warning_active = true;
     openIDImplicitFlowConfiguration.log_console_debug_active = false;

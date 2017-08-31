@@ -9,10 +9,16 @@ services:
       - MYSQL_USER=keycloak
       - MYSQL_PASSWORD=keycloak
       - MYSQL_ROOT_PASSWORD=root_password
+  nginx:
+    image: nginx
+    ports:
+     - "8080:80"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+    links:
+      - keycloak
   keycloak:
     image: jboss/keycloak-mysql
-    ports:
-     - "8080:8080"
     links:
      - mysql
     environment:

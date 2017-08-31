@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, RequestOptionsArgs } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
@@ -13,9 +13,8 @@ export class ApiService {
 
     public callApi = (): Observable<any> => {
         this.setHeaders();
-        console.log('blip');
-        return this.http.get('http://localhost:5000/api', {
-            headers: this.headers
+        return this.http.get('http://localhost:5000/api/values/1234', {
+          headers: this.headers
         }).map(res => res.json());
     }
 
@@ -25,7 +24,6 @@ export class ApiService {
         this.headers.append('Accept', 'application/json');
 
         const token = this.oidcSecurityService.getToken();
-
         if (token !== '') {
             this.headers.append('Authorization', 'Bearer ' + token);
         }
